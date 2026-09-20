@@ -7,7 +7,7 @@ Use this structured guide for your college project viva, seminar, or final year 
 ## Slide 1: Title & Introduction
 - **Project Title**: ParkSmart - Intelligent Smart Parking Management System
 - **Domain**: Web Application, Internet of Things (IoT) simulation, Enterprise Software Engineering
-- **Presenter**: [Your Name]
+- **Presenter**: Haarisha Firthous J (44731132), Rakesk K (44731143)
 - **Key Objective**: Solving urban congestion and parking inefficiency through automated bay allocation, dynamic tariff pricing, and contactless QR parking passes.
 
 ---
