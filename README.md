@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # ParkSmart - Smart Parking Management System
 
 An enterprise-grade, full-stack Smart Parking Management System built with **Java Spring Boot 3**, **Spring Data JPA**, **MySQL 8.0+**, and a modern **HTML5/CSS3/JavaScript** frontend dashboard.
