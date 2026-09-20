@@ -1,6 +1,4 @@
-# ParkSmart - Project Presentation & Viva Outline
-
-Use this structured guide for your college project viva, seminar, or final year demonstration.
+# ParkSmart - Project Presentation
 
 ---
 
