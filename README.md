@@ -1,6 +1,11 @@
 # ParkSmart - Smart Parking Management System
 
-An enterprise-grade, full-stack Smart Parking Management System built with **Java Spring Boot 3**, **Spring Data JPA**, **MySQL 8.0+**, and a modern **HTML5/CSS3/JavaScript** frontend dashboard.
+ParkSmart is a Java-based Smart Parking Management System designed to simplify vehicle parking through a single application. It supports parking slot allocation, real-time availability status, vehicle entry and exit, QR-based parking passes, and automated parking fee calculation. The system helps improve parking space utilization and provides administrators with occupancy and revenue information.
+
+Institution: Sathyabama Institute of Science and Technology (SIST) 
+Department: Computer Science & Engineering (Artificial Intelligence) 
+Execution Platform: IntelliJ IDEA, Java Spring Boot, MySQL, Web Browser 
+URL: http://localhost:8080/
 
 ---
 
@@ -156,7 +161,23 @@ Once running:
 2. Click **Import** in the top-left corner.
 3. Select `ParkSmart_Postman_Collection.json` from the project root.
 4. Run requests to test check-in, checkout, and analytics endpoints.
-=======
-# Smart-Parking-Management-System
-Team 13 - Smart Parking Management System using Java Spring Boot and MySQL
->>>>>>> d4eaee82285ba224deaa7f4f158956c230ad0f6a
+
+---
+
+## Viva Q&A - Common Questions & Answers
+
+Q1: How does your application prevent double allocation if two vehicles arrive simultaneously?
+
+Answer: We employ atomic conditional updates at the database level (UPDATE ... WHERE status = 'AVAILABLE'). If multiple requests target the same slot simultaneously, exactly one row update succeeds (rowsUpdated = 1), while subsequent conflicting threads fail and automatically fall back to the next available slot.
+
+Q2: Why use Spring Boot 3 with JPA instead of standard JDBC?
+
+Answer: Spring Boot provides production-ready features (embedded web server, transaction management, dependency injection) while Spring Data JPA abstracts boilerplate queries, provides automated schema generation, type safety, and relationship mappings.
+
+Q3: How is the QR code generated and verified?
+
+Answer: We utilize the ZXing (Zebra Crossing) library on the backend to encode a JSON payload containing session ID, vehicle plate, bay code, and timestamp into a Base64 data URI rendered directly in HTML without external API dependencies.
+
+Q4: Can the parking tariffs be changed without restarting the server?
+
+Answer: Yes, tariffs are stored in the parking_rates table in MySQL and managed via REST endpoints (/api/rates), allowing real-time adjustments that take effect immediately.
