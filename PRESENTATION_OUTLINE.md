@@ -3,7 +3,7 @@
 ---
 
 ## Slide 1: Title & Introduction
-- **Project Title**: ParkSmart - Intelligent Smart Parking Management System
+- **Project Title**: ParkSmart - Smart Parking Management System
 - **Domain**: Web Application, Internet of Things (IoT) simulation, Enterprise Software Engineering
 - **Presenter**: Haarisha Firthous J (44731132), Rakesk K (44731143)
 - **Key Objective**: Solving urban congestion and parking inefficiency through automated bay allocation, dynamic tariff pricing, and contactless QR parking passes.
