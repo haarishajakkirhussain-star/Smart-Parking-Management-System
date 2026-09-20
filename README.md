@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ParkSmart - Smart Parking Management System
 
 An enterprise-grade, full-stack Smart Parking Management System built with **Java Spring Boot 3**, **Spring Data JPA**, **MySQL 8.0+**, and a modern **HTML5/CSS3/JavaScript** frontend dashboard.
@@ -156,3 +157,7 @@ Once running:
 2. Click **Import** in the top-left corner.
 3. Select `ParkSmart_Postman_Collection.json` from the project root.
 4. Run requests to test check-in, checkout, and analytics endpoints.
+=======
+# Smart-Parking-Management-System
+Team 13 - Smart Parking Management System using Java Spring Boot and MySQL
+>>>>>>> d4eaee82285ba224deaa7f4f158956c230ad0f6a
