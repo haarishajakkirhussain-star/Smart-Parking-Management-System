@@ -3,8 +3,11 @@
 ParkSmart is a Java-based Smart Parking Management System designed to simplify vehicle parking through a single application. It supports parking slot allocation, real-time availability status, vehicle entry and exit, QR-based parking passes, and automated parking fee calculation. The system helps improve parking space utilization and provides administrators with occupancy and revenue information.
 
 Institution: Sathyabama Institute of Science and Technology (SIST) 
+
 Department: Computer Science & Engineering (Artificial Intelligence) 
+
 Execution Platform: IntelliJ IDEA, Java Spring Boot, MySQL, Web Browser 
+
 URL: http://localhost:8080/
 
 ---
