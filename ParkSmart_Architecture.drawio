@@ -1,0 +1,103 @@
+<mxfile host="app.diagrams.net" modified="2026-09-20T10:30:00.000Z" agent="ParkSmart" version="21.0.0" type="device">
+  <diagram id="parksmart-arch" name="ParkSmart Architecture">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- Title -->
+        <mxCell id="title" value="ParkSmart - Smart Parking Management System Architecture" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1;fontColor=#1E293B;" vertex="1" parent="1">
+          <mxGeometry x="250" y="20" width="670" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- Tier 1: Client Tier -->
+        <mxCell id="tier1_group" value="PRESENTATION TIER (HTML5 / CSS3 / JavaScript SPA)" style="swimlane;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#3B82F6;fontStyle=1;fontColor=#1E3A8A;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="1090" height="150" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="ui_grid" value="Interactive Parking Grid&#xa;(Multi-Floor &amp; Zones&#xa;Green/Red Status)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#3B82F6;fontStyle=0;fontColor=#1E3A8A;" vertex="1" parent="tier1_group">
+          <mxGeometry x="30" y="45" width="220" height="75" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="ui_entry" value="Vehicle Entry Form&#xa;&amp; QR Pass Generator&#xa;(ZXing Base64 Display)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#10B981;fontStyle=0;fontColor=#065F46;" vertex="1" parent="tier1_group">
+          <mxGeometry x="290" y="45" width="230" height="75" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="ui_checkout" value="Vehicle Checkout &amp;&#xa;Dynamic Fee Calculator&#xa;(UPI / Cash / Card)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF2F2;strokeColor=#EF4444;fontStyle=0;fontColor=#991B1B;" vertex="1" parent="tier1_group">
+          <mxGeometry x="560" y="45" width="230" height="75" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="ui_analytics" value="Admin Analytics &amp;&#xa;Dynamic Tariff Editor&#xa;(Peak Hours Histogram)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFBEB;strokeColor=#F59E0B;fontStyle=0;fontColor=#92400E;" vertex="1" parent="tier1_group">
+          <mxGeometry x="830" y="45" width="230" height="75" as="geometry"/>
+        </mxCell>
+
+        <!-- Tier 2: Application Tier -->
+        <mxCell id="tier2_group" value="APPLICATION TIER (Spring Boot 3 REST API Server on Port 8080)" style="swimlane;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#6366F1;fontStyle=1;fontColor=#312E81;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="270" width="1090" height="230" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="controllers" value="REST Controllers&#xa;• ParkingGridController&#xa;• ParkingEntryController&#xa;• ParkingCheckoutController&#xa;• AnalyticsController&#xa;• ParkingRateController" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EEF2FF;strokeColor=#6366F1;fontStyle=0;fontColor=#3730A3;align=left;spacingLeft=15;" vertex="1" parent="tier2_group">
+          <mxGeometry x="30" y="45" width="240" height="155" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="services" value="Core Business Services&#xa;• SlotAllocationService (Atomic locking)&#xa;• PricingService (Grace period &amp; tariffs)&#xa;• ParkingSessionService (Check-in/out)&#xa;• QRCodeService (ZXing generation)&#xa;• AnalyticsService (Metrics &amp; turnover)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F3FF;strokeColor=#8B5CF6;fontStyle=0;fontColor=#4C1D95;align=left;spacingLeft=15;" vertex="1" parent="tier2_group">
+          <mxGeometry x="320" y="45" width="370" height="155" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="repos" value="Spring Data JPA Repos&#xa;• ParkingSlotRepository&#xa;• ParkingSessionRepository&#xa;• PaymentRepository&#xa;• ParkingRateRepository&#xa;• VehicleRepository" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F0FDF4;strokeColor=#22C55E;fontStyle=0;fontColor=#14532D;align=left;spacingLeft=15;" vertex="1" parent="tier2_group">
+          <mxGeometry x="740" y="45" width="320" height="155" as="geometry"/>
+        </mxCell>
+
+        <!-- Tier 3: Persistence Tier -->
+        <mxCell id="tier3_group" value="DATA PERSISTENCE TIER (MySQL 8.0+ Enterprise Database / H2 Fallback)" style="swimlane;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#0EA5E9;fontStyle=1;fontColor=#0C4A6E;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="540" width="1090" height="160" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="tbl_floors" value="parking_floors&#xa;id (PK)&#xa;floor_number&#xa;floor_name" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#F0F9FF;strokeColor=#0284C7;fontColor=#0369A1;" vertex="1" parent="tier3_group">
+          <mxGeometry x="30" y="40" width="110" height="100" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="tbl_zones" value="parking_zones&#xa;id (PK)&#xa;zone_code&#xa;zone_name&#xa;floor_id (FK)" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#F0F9FF;strokeColor=#0284C7;fontColor=#0369A1;" vertex="1" parent="tier3_group">
+          <mxGeometry x="170" y="40" width="120" height="100" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="tbl_slots" value="parking_slots&#xa;id (PK)&#xa;slot_code (UQ)&#xa;vehicle_type&#xa;status, occupied&#xa;zone_id (FK)" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#F0F9FF;strokeColor=#0284C7;fontColor=#0369A1;" vertex="1" parent="tier3_group">
+          <mxGeometry x="320" y="40" width="140" height="100" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="tbl_vehicles" value="vehicles&#xa;id (PK)&#xa;license_plate (UQ)&#xa;vehicle_type&#xa;owner_name&#xa;mobile_number" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#F0F9FF;strokeColor=#0284C7;fontColor=#0369A1;" vertex="1" parent="tier3_group">
+          <mxGeometry x="490" y="40" width="150" height="100" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="tbl_sessions" value="parking_sessions&#xa;id (PK)&#xa;session_code (UQ)&#xa;vehicle_id (FK)&#xa;slot_id (FK)&#xa;entry_time, exit_time&#xa;duration, total_fee" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#F0F9FF;strokeColor=#0284C7;fontColor=#0369A1;" vertex="1" parent="tier3_group">
+          <mxGeometry x="670" y="40" width="170" height="100" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="tbl_payments" value="payments&#xa;id (PK)&#xa;session_id (FK)&#xa;amount, method&#xa;payment_status&#xa;transaction_ref" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#F0F9FF;strokeColor=#0284C7;fontColor=#0369A1;" vertex="1" parent="tier3_group">
+          <mxGeometry x="870" y="40" width="130" height="100" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="tbl_rates" value="rates&#xa;id&#xa;hourly_rate&#xa;base_rate" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;size=15;fillColor=#F0F9FF;strokeColor=#0284C7;fontColor=#0369A1;" vertex="1" parent="tier3_group">
+          <mxGeometry x="1015" y="40" width="65" height="100" as="geometry"/>
+        </mxCell>
+
+        <!-- Connections -->
+        <mxCell id="edge1" value="REST JSON Requests (fetch)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;strokeColor=#3B82F6;" edge="1" parent="1" source="tier1_group" target="controllers">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="edge2" value="Delegates business logic" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;strokeWidth=2;strokeColor=#6366F1;" edge="1" parent="tier2_group" source="controllers" target="services">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="edge3" value="ORM Queries &amp; Locking" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;strokeWidth=2;strokeColor=#8B5CF6;" edge="1" parent="tier2_group" source="services" target="repos">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="edge4" value="JDBC / SQL Data Transactions" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;strokeColor=#0EA5E9;" edge="1" parent="1" source="repos" target="tier3_group">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

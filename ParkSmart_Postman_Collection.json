@@ -1,0 +1,209 @@
+{
+  "info": {
+    "name": "ParkSmart - Smart Parking Management API",
+    "description": "Comprehensive Postman test collection for ParkSmart Spring Boot 3 REST APIs.",
+    "_postman_id": "parksmart-postman-2026",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Parking Grid & Floors",
+      "item": [
+        {
+          "name": "Get All Floors and Zones",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/floors",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "floors"]
+            }
+          }
+        },
+        {
+          "name": "Get Slots by Floor ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/grid/slots?floorId=2",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "grid", "slots"],
+              "query": [{ "key": "floorId", "value": "2" }]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Vehicle Entry & Allocation",
+      "item": [
+        {
+          "name": "Check-in 4-Wheeler (Car)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"licensePlate\": \"MH12AB1234\",\n  \"vehicleType\": \"FOUR_WHEELER\",\n  \"ownerName\": \"Rahul Sharma\",\n  \"mobileNumber\": \"9876543210\",\n  \"preferredFloorId\": 2\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/parking/entry",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "parking", "entry"]
+            }
+          }
+        },
+        {
+          "name": "Check-in 2-Wheeler (Bike)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"licensePlate\": \"KA01CD5678\",\n  \"vehicleType\": \"TWO_WHEELER\",\n  \"ownerName\": \"Priya Patel\",\n  \"mobileNumber\": \"9123456780\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/parking/entry",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "parking", "entry"]
+            }
+          }
+        },
+        {
+          "name": "Check-in Duplicate (Should Return 409 Conflict)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"licensePlate\": \"MH12AB1234\",\n  \"vehicleType\": \"FOUR_WHEELER\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/parking/entry",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "parking", "entry"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Checkout & Settlement",
+      "item": [
+        {
+          "name": "Find Active Session by License Plate",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/parking/active/MH12AB1234",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "parking", "active", "MH12AB1234"]
+            }
+          }
+        },
+        {
+          "name": "Process Checkout with UPI Payment",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"licensePlate\": \"MH12AB1234\",\n  \"paymentMethod\": \"UPI\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/parking/checkout",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "parking", "checkout"]
+            }
+          }
+        },
+        {
+          "name": "Get Parking Session History",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/parking/history?page=0&size=15",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "parking", "history"],
+              "query": [
+                { "key": "page", "value": "0" },
+                { "key": "size", "value": "15" }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Analytics & Tariffs",
+      "item": [
+        {
+          "name": "Get Real-time Analytics Summary",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/analytics/summary",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "analytics", "summary"]
+            }
+          }
+        },
+        {
+          "name": "Get All Configured Parking Rates",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/rates",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "rates"]
+            }
+          }
+        },
+        {
+          "name": "Update 4-Wheeler Hourly Tariff",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"baseRate\": 50.00,\n  \"hourlyRate\": 50.00,\n  \"baseHours\": 1,\n  \"gracePeriodMinutes\": 15\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/rates/2",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "rates", "2"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
